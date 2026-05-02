@@ -166,21 +166,31 @@ sudo chmod 644 /var/www/error-pages/*.html
 <section class="card">
     <h2>3. Nginx Configuration</h2>
 
-    <h3>Example server block</h3>
+    <h3>Create a snippet file</h3>
+    <pre><code># /etc/nginx/snippets/error-pages.conf
+# Custom error pages
+error_page 403 /error-pages/403.html;
+error_page 404 /error-pages/404.html;
+error_page 429 /error-pages/429.html;
+error_page 500 /error-pages/500.html;
+error_page 502 /error-pages/502.html;
+error_page 503 /error-pages/503.html;
+error_page 504 /error-pages/504.html;
+
+location /error-pages/ {
+    alias /var/www/error-pages/;
+    internal;
+}
+</code></pre>
+
+    <h3>Include snippet in your server block</h3>
     <pre><code>server {
     listen 80;
     server_name example.com;
 
     root /var/www/html;
 
-    # Custom error pages
-    error_page 403 /error-pages/403.html;
-    error_page 404 /error-pages/404.html;
-    error_page 429 /error-pages/429.html;
-    error_page 500 /error-pages/500.html;
-    error_page 502 /error-pages/502.html;
-    error_page 503 /error-pages/503.html;
-    error_page 504 /error-pages/504.html;
+    include /etc/nginx/snippets/error-pages.conf;
 
     # Optional maintenance page (force 503 for all requests)
     # Uncomment this block during maintenance:
@@ -188,11 +198,6 @@ sudo chmod 644 /var/www/error-pages/*.html
     #     return 503;
     # }
     # error_page 503 /error-pages/maintenance.html;
-
-    location /error-pages/ {
-        alias /var/www/error-pages/;
-        internal;
-    }
 }
 </code></pre>
 

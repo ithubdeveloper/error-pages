@@ -42,6 +42,26 @@ sudo chmod 644 /var/www/error-pages/*.html
 
 ## Nginx Example
 
+Create a snippet file:
+
+```nginx
+# /etc/nginx/snippets/error-pages.conf
+error_page 403 /error-pages/403.html;
+error_page 404 /error-pages/404.html;
+error_page 429 /error-pages/429.html;
+error_page 500 /error-pages/500.html;
+error_page 502 /error-pages/502.html;
+error_page 503 /error-pages/503.html;
+error_page 504 /error-pages/504.html;
+
+location /error-pages/ {
+    alias /var/www/error-pages/;
+    internal;
+}
+```
+
+Then include it inside your server block:
+
 ```nginx
 server {
     listen 80;
@@ -49,24 +69,13 @@ server {
 
     root /var/www/html;
 
-    error_page 403 /error-pages/403.html;
-    error_page 404 /error-pages/404.html;
-    error_page 429 /error-pages/429.html;
-    error_page 500 /error-pages/500.html;
-    error_page 502 /error-pages/502.html;
-    error_page 503 /error-pages/503.html;
-    error_page 504 /error-pages/504.html;
+    include /etc/nginx/snippets/error-pages.conf;
 
     # Optional maintenance toggle
     # if (-f /var/www/error-pages/maintenance.flag) {
     #     return 503;
     # }
     # error_page 503 /error-pages/maintenance.html;
-
-    location /error-pages/ {
-        alias /var/www/error-pages/;
-        internal;
-    }
 }
 ```
 
