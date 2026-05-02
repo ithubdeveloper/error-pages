@@ -8,217 +8,279 @@
     <meta name="title" content="403 Forbidden">
     <meta name="description" content="A 403 error status indicates that you don't have permission to access the file or page. In general, web servers and websites have directories and files that are not open to the public web for security reasons.">
     <style>
-        :root {
-            --color-bg-primary: #fff;
-            --color-text-primary: #000;
-            --color-text-secondary: #575958;
-            --ui-card-color-bg: #f2f2f2;
-            --color-text-ok: #137333;
-            --color-bg-ok: #e6f4ea;
-            --color-text-error: #c5221f;
-            --color-bg-error: #fce8e6;
-            --color-text-warning: #b05a00;
-            --color-bg-warning: #fef7e0;
-            --icon-size: 48px;
-        }
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600&display=swap');
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --color-bg-primary: #111;
-                --color-text-primary: rgba(255, 255, 255, 0.86);
-                --color-text-secondary: rgba(255, 255, 255, 0.4);
-                --ui-card-color-bg: rgba(40, 40, 40, 0.73);
-                --color-bg-ok: #07220f;
-                --color-bg-error: #270501;
-                --color-bg-warning: #392605;
-            }
-        }
+:root {
+    --color-bg-primary: #f6f9fc;
+    --color-text-primary: #1c232b;
+    --color-text-secondary: #4d5966;
+    --ui-card-color-bg: rgba(255, 255, 255, 0.84);
+    --color-text-ok: #0d8a52;
+    --color-bg-ok: #e4f7ef;
+    --color-text-error: #d8413a;
+    --color-bg-error: #fde9e8;
+    --color-text-warning: #b96a08;
+    --color-bg-warning: #fff4dc;
+    --color-line: #d4dde7;
+    --color-glow: rgba(10, 94, 184, 0.12);
+    --icon-size: 48px;
+}
 
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100%;
-            color: var(--color-text-primary);
-            background-color: var(--color-bg-primary);
-            font-family: sans-serif;
-            font-size: 16px;
-            word-break: keep-all;
-        }
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg-primary: #111;
+        --color-text-primary: rgba(255, 255, 255, 0.9);
+        --color-text-secondary: rgba(255, 255, 255, 0.6);
+        --ui-card-color-bg: rgba(40, 40, 40, 0.73);
+        --color-bg-ok: #072717;
+        --color-bg-error: #2e0c09;
+        --color-bg-warning: #3f2d0d;
+        --color-line: rgba(255, 255, 255, 0.14);
+        --color-glow: rgba(123, 176, 255, 0.2);
+    }
+}
 
-        @media screen and (min-width: 2000px) {
-            html,
-            body {
-                font-size: 20px;
-            }
-        }
+@keyframes card-enter {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
 
-        body {
-            margin: 2em 2em;
-        }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        header {
-            margin-left: 1em;
-        }
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    color: var(--color-text-primary);
+    background:
+        radial-gradient(circle at 92% 8%, var(--color-glow), transparent 34%),
+        radial-gradient(circle at 14% 4%, var(--color-glow), transparent 28%),
+        var(--color-bg-primary);
+    font-family: "Source Sans 3", "Segoe UI", sans-serif;
+    font-size: 16px;
+    word-break: keep-all;
+}
 
-        header .error-code {
-            font-size: 3.2em;
-            font-family: monospace;
-            font-weight: 400;
-            margin: 0 0 0 10px;
-        }
+@media screen and (min-width: 2000px) {
+    html,
+    body {
+        font-size: 20px;
+    }
+}
 
-        header .error-description {
-            font-family: sans-serif;
-            font-size: 1.4em;
-            color: var(--color-text-secondary);
-            margin: 0 0 0 10px;
-        }
+body {
+    margin: 2em 2em;
+}
 
-        code {
-            font-family: monospace;
-        }
+header {
+    margin-left: 1em;
+}
 
-        .status {
-            margin-top: 2.5em;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-        }
+header .error-code {
+    font-size: clamp(2rem, 2.8vw, 3.2em);
+    font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 0 10px;
+}
 
-        .card {
-            background-color: var(--ui-card-color-bg);
-            padding: 2em;
-            margin: 1em 1em;
-            min-height: 3em;
-            border-radius: 9px;
-            flex-grow: 1;
-        }
+header .error-description {
+    font-family: "Source Sans 3", "Segoe UI", sans-serif;
+    font-size: 1.4em;
+    color: var(--color-text-secondary);
+    margin: 0 0 0 10px;
+}
 
-        .arrows svg {
-            fill: var(--color-text-secondary);
-        }
+code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
 
-        .icon svg {
-            width: var(--icon-size);
-            height: auto;
-            fill: var(--color-text-primary);
-        }
+.status {
+    margin-top: 2.5em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
 
-        .card.ok {
-            background-color: var(--color-bg-ok);
-        }
+.card {
+    background-color: var(--ui-card-color-bg);
+    border: 1px solid var(--color-line);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    padding: 2em;
+    margin: 1em 1em;
+    min-height: 3em;
+    border-radius: 14px;
+    flex-grow: 1;
+    box-shadow: 0 16px 28px -22px rgba(17, 46, 74, 0.55);
+    animation: card-enter 560ms ease both;
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
 
-        .card.ok .status-text {
-            color: var(--color-text-ok);
-        }
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 30px -22px rgba(17, 46, 74, 0.62);
+    border-color: #0a5eb8;
+}
 
-        .card.ok svg {
-            fill: var(--color-text-ok);
-        }
+#client-status-card {
+    animation-delay: 80ms;
+}
 
-        .card.error {
-            background-color: var(--color-bg-error);
-        }
+#network-status-card {
+    animation-delay: 160ms;
+}
 
-        .card.error .status-text {
-            color: var(--color-text-error);
-        }
+#server-status-card {
+    animation-delay: 240ms;
+}
 
-        .card.error svg {
-            fill: var(--color-text-error);
-        }
+.arrows svg {
+    fill: var(--color-text-secondary);
+}
 
-        .card.warning {
-            background-color: var(--color-bg-warning);
-        }
+.icon svg {
+    width: var(--icon-size);
+    height: auto;
+    fill: var(--color-text-primary);
+}
 
-        .card.warning .status-text {
-            color: var(--color-text-warning);
-        }
+.card.ok {
+    background-color: var(--color-bg-ok);
+}
 
-        .card.warning svg {
-            fill: var(--color-text-warning);
-        }
+.card.ok .status-text {
+    color: var(--color-text-ok);
+}
 
-        .card .caption {
-            font-size: 1.37em;
-        }
+.card.ok svg {
+    fill: var(--color-text-ok);
+}
 
-        .card .status-text,
-        .reason p {
-            margin: 0;
-            font-family: sans-serif;
-        }
+.card.error {
+    background-color: var(--color-bg-error);
+}
 
-        .reason p {
-            line-height: 125%;
-        }
+.card.error .status-text {
+    color: var(--color-text-error);
+}
 
-        .reason {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: baseline;
-        }
+.card.error svg {
+    fill: var(--color-text-error);
+}
 
-        .reason > * {
-            display: block;
-            margin: 1em;
-            flex-grow: 1;
-            max-width: 40%;
-        }
+.card.warning {
+    background-color: var(--color-bg-warning);
+}
 
-        .reason h2 {
-            font-size: 1.45em;
-            margin: 0 0 .6em 0;
-            font-weight: normal;
-        }
+.card.warning .status-text {
+    color: var(--color-text-warning);
+}
 
-        footer {
-            margin: 1em;
-            color: var(--color-text-secondary);
-        }
+.card.warning svg {
+    fill: var(--color-text-warning);
+}
 
-        footer .details {
-            margin-top: 20px;
-        }
+.card .caption {
+    font-size: 1.37em;
+    font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+    font-weight: 500;
+}
 
-        footer .details ul {
-            padding: 0;
-            font-size: 0.7em;
-            list-style: none;
-        }
+.card .status-text,
+.reason p {
+    margin: 0;
+    font-family: "Source Sans 3", "Segoe UI", sans-serif;
+}
 
-        footer .details code {
-            padding-left: 0.3em;
-        }
+.reason p {
+    line-height: 125%;
+}
 
-        @media screen and (max-width: 820px) {
-            .arrows {
-                display: none;
-            }
-        }
+.reason {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+}
 
-        @media screen and (max-width: 480px) {
-            .reason > * {
-                max-width: 100%;
-            }
-        }
+.reason > * {
+    display: block;
+    margin: 1em;
+    flex-grow: 1;
+    max-width: 40%;
+}
 
-        @media screen and (min-width: 768px) {
-            body {
-                margin: 8% 10%;
-            }
+.reason h2 {
+    font-size: 1.45em;
+    margin: 0 0 .6em 0;
+    font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
 
-            header > * {
-                display: inline-block;
-                margin-left: 1%;
-            }
-        }
+footer {
+    margin: 1em;
+    color: var(--color-text-secondary);
+}
+
+footer .details {
+    margin-top: 20px;
+}
+
+footer .details ul {
+    padding: 0;
+    font-size: 0.7em;
+    list-style: none;
+}
+
+footer .details code {
+    padding-left: 0.3em;
+}
+
+@media screen and (max-width: 820px) {
+    .arrows {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .reason > * {
+        max-width: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        margin: 8% 10%;
+    }
+
+    header > * {
+        display: inline-block;
+        margin-left: 1%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        animation: none;
+        transition: none;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+}
+
     </style>
 </head>
 <body>
