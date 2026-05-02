@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <title>Error Pages Setup Instructions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to use these custom error pages with Nginx and Apache.">
+    <style>
+        :root {
+            --color-bg-primary: #fff;
+            --color-text-primary: #000;
+            --color-text-secondary: #575958;
+            --color-card-bg: #f2f2f2;
+            --color-line: #dcdcdc;
+            --color-code-bg: #f7f7f7;
+            --color-accent: #0f5cbd;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-bg-primary: #111;
+                --color-text-primary: rgba(255, 255, 255, 0.9);
+                --color-text-secondary: rgba(255, 255, 255, 0.6);
+                --color-card-bg: rgba(40, 40, 40, 0.73);
+                --color-line: rgba(255, 255, 255, 0.14);
+                --color-code-bg: #1f1f1f;
+                --color-accent: #7bb0ff;
+            }
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            font-family: sans-serif;
+            font-size: 16px;
+            color: var(--color-text-primary);
+            background: var(--color-bg-primary);
+        }
+
+        body {
+            margin: 2em;
+        }
+
+        @media screen and (min-width: 768px) {
+            body {
+                margin: 6% 10%;
+            }
+        }
+
+        header {
+            margin-bottom: 2em;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.2em;
+            font-weight: 500;
+        }
+
+        .subtitle {
+            margin-top: 0.4em;
+            color: var(--color-text-secondary);
+            max-width: 64ch;
+            line-height: 1.5;
+        }
+
+        .card {
+            background: var(--color-card-bg);
+            border-radius: 10px;
+            padding: 1.2em 1.4em;
+            margin-bottom: 1.3em;
+        }
+
+        h2 {
+            font-size: 1.35em;
+            margin: 0 0 0.55em 0;
+            font-weight: 500;
+        }
+
+        h3 {
+            font-size: 1.06em;
+            margin: 0.9em 0 0.5em 0;
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        p,
+        li {
+            line-height: 1.5;
+        }
+
+        ul {
+            margin: 0.5em 0 0.8em 1.1em;
+            padding: 0;
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            background: var(--color-code-bg);
+            border-radius: 4px;
+            padding: 0.1em 0.35em;
+        }
+
+        pre {
+            margin: 0.7em 0 1em 0;
+            border: 1px solid var(--color-line);
+            border-radius: 8px;
+            overflow-x: auto;
+            background: var(--color-code-bg);
+            padding: 0.85em;
+        }
+
+        pre code {
+            padding: 0;
+            background: transparent;
+        }
+
+        .small {
+            color: var(--color-text-secondary);
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Error Pages Setup Instructions</h1>
+    <p class="subtitle">
+        This guide explains how to serve the custom pages in this folder on Nginx and Apache.
+        It includes file placement, server configuration, and validation steps.
+    </p>
+</header>
+
+<section class="card">
+    <h2>1. Files Included</h2>
+    <ul>
+        <li><code>403.html</code></li>
+        <li><code>404.html</code></li>
+        <li><code>429.html</code></li>
+        <li><code>500.html</code></li>
+        <li><code>502.html</code></li>
+        <li><code>503.html</code></li>
+        <li><code>504.html</code></li>
+        <li><code>maintenance.html</code></li>
+    </ul>
+    <p class="small">Recommended deployment path: <code>/var/www/error-pages</code>.</p>
+</section>
+
+<section class="card">
+    <h2>2. Nginx Configuration</h2>
+
+    <h3>Example server block</h3>
+    <pre><code>server {
+    listen 80;
+    server_name example.com;
+
+    root /var/www/html;
+
+    # Custom error pages
+    error_page 403 /error-pages/403.html;
+    error_page 404 /error-pages/404.html;
+    error_page 429 /error-pages/429.html;
+    error_page 500 /error-pages/500.html;
+    error_page 502 /error-pages/502.html;
+    error_page 503 /error-pages/503.html;
+    error_page 504 /error-pages/504.html;
+
+    # Optional maintenance page (force 503 for all requests)
+    # Uncomment this block during maintenance:
+    # if (-f /var/www/error-pages/maintenance.flag) {
+    #     return 503;
+    # }
+    # error_page 503 /error-pages/maintenance.html;
+
+    location /error-pages/ {
+        alias /var/www/error-pages/;
+        internal;
+    }
+}
+</code></pre>
+
+    <h3>Reload Nginx</h3>
+    <pre><code>sudo nginx -t
+sudo systemctl reload nginx
+</code></pre>
+</section>
+
+<section class="card">
+    <h2>3. Apache Configuration</h2>
+
+    <h3>VirtualHost example</h3>
+    <pre><code>&lt;VirtualHost *:80&gt;
+    ServerName example.com
+    DocumentRoot /var/www/html
+
+    Alias /error-pages/ "/var/www/error-pages/"
+    &lt;Directory "/var/www/error-pages"&gt;
+        Options -Indexes
+        AllowOverride None
+        Require all granted
+    &lt;/Directory&gt;
+
+    ErrorDocument 403 /error-pages/403.html
+    ErrorDocument 404 /error-pages/404.html
+    ErrorDocument 429 /error-pages/429.html
+    ErrorDocument 500 /error-pages/500.html
+    ErrorDocument 502 /error-pages/502.html
+    ErrorDocument 503 /error-pages/503.html
+    ErrorDocument 504 /error-pages/504.html
+
+    # Optional: set maintenance page for 503
+    # ErrorDocument 503 /error-pages/maintenance.html
+&lt;/VirtualHost&gt;
+</code></pre>
+
+    <h3>Reload Apache</h3>
+    <pre><code>sudo apachectl configtest
+sudo systemctl reload apache2
+</code></pre>
+</section>
+
+<section class="card">
+    <h2>4. Deploy and Validate</h2>
+
+    <h3>Copy files</h3>
+    <pre><code>sudo mkdir -p /var/www/error-pages
+sudo cp *.html /var/www/error-pages/
+sudo chown -R root:root /var/www/error-pages
+sudo chmod 644 /var/www/error-pages/*.html
+</code></pre>
+
+    <h3>Quick validation checks</h3>
+    <pre><code># Confirm pages are accessible through configured route
+curl -I http://example.com/non-existing-page
+
+# Trigger 404 and check body response
+curl -s http://example.com/non-existing-page | head
+</code></pre>
+
+    <p class="small">
+        Tip: Keep the <code>/error-pages/</code> location internal on Nginx to prevent direct browsing.
+        On Apache, keep directory listing disabled using <code>Options -Indexes</code>.
+    </p>
+</section>
+
+</body>
+</html>
