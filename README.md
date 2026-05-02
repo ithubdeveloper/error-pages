@@ -16,7 +16,18 @@ Reusable static error pages for web servers.
 
 ## Quick Start
 
-1. Copy files to your server:
+1. Easy way (clone directly on the server):
+
+```bash
+cd /tmp
+git clone https://github.com/ithubdeveloper/error-pages.git
+sudo mkdir -p /var/www/error-pages
+sudo cp /tmp/error-pages/*.html /var/www/error-pages/
+sudo chown -R root:root /var/www/error-pages
+sudo chmod 644 /var/www/error-pages/*.html
+```
+
+2. Or copy files manually to your server:
 
 ```bash
 sudo mkdir -p /var/www/error-pages
@@ -25,9 +36,9 @@ sudo chown -R root:root /var/www/error-pages
 sudo chmod 644 /var/www/error-pages/*.html
 ```
 
-2. Configure your web server using the examples below.
+3. Configure your web server using the examples below.
 
-3. Reload server config and test with curl.
+4. Reload server config and test with curl.
 
 ## Nginx Example
 

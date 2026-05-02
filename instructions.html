@@ -149,7 +149,22 @@
 </section>
 
 <section class="card">
-    <h2>2. Nginx Configuration</h2>
+    <h2>2. Easy Install (Direct Git Clone)</h2>
+
+    <h3>Clone and deploy in one flow</h3>
+    <pre><code>cd /tmp
+git clone https://github.com/ithubdeveloper/error-pages.git
+sudo mkdir -p /var/www/error-pages
+sudo cp /tmp/error-pages/*.html /var/www/error-pages/
+sudo chown -R root:root /var/www/error-pages
+sudo chmod 644 /var/www/error-pages/*.html
+</code></pre>
+
+    <p class="small">If your server has no Git access, upload these files manually and continue with server configuration.</p>
+</section>
+
+<section class="card">
+    <h2>3. Nginx Configuration</h2>
 
     <h3>Example server block</h3>
     <pre><code>server {
@@ -188,7 +203,7 @@ sudo systemctl reload nginx
 </section>
 
 <section class="card">
-    <h2>3. Apache Configuration</h2>
+    <h2>4. Apache Configuration</h2>
 
     <h3>VirtualHost example</h3>
     <pre><code>&lt;VirtualHost *:80&gt;
@@ -222,7 +237,7 @@ sudo systemctl reload apache2
 </section>
 
 <section class="card">
-    <h2>4. Deploy and Validate</h2>
+    <h2>5. Deploy and Validate</h2>
 
     <h3>Copy files</h3>
     <pre><code>sudo mkdir -p /var/www/error-pages
