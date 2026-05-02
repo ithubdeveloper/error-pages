@@ -10,14 +10,14 @@
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600&display=swap');
 
         :root {
-            --color-bg-primary: #f6f9fc;
+            --color-bg-primary: #eaf2ff;
             --color-text-primary: #1c232b;
             --color-text-secondary: #4d5966;
             --color-card-bg: rgba(255, 255, 255, 0.84);
             --color-line: #d4dde7;
             --color-code-bg: #f2f6fa;
             --color-accent: #0a5eb8;
-            --color-glow: rgba(10, 94, 184, 0.12);
+            --color-glow: rgba(10, 94, 184, 0.3);
         }
 
         @media (prefers-color-scheme: dark) {
@@ -54,9 +54,9 @@
             font-size: 16px;
             color: var(--color-text-primary);
             background:
-                radial-gradient(circle at 92% 8%, var(--color-glow), transparent 34%),
-                radial-gradient(circle at 14% 4%, var(--color-glow), transparent 28%),
-                var(--color-bg-primary);
+        radial-gradient(circle at 92% 8%, var(--color-glow), transparent 46%),
+        radial-gradient(circle at 12% 2%, rgba(58, 124, 191, 0.22), transparent 40%),
+        linear-gradient(165deg, #f4f8ff 0%, var(--color-bg-primary) 55%, #e7f0ff 100%);
         }
 
         body {
