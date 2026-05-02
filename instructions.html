@@ -7,14 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="How to use these custom error pages with Nginx and Apache.">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600&display=swap');
+
         :root {
-            --color-bg-primary: #fff;
-            --color-text-primary: #000;
-            --color-text-secondary: #575958;
-            --color-card-bg: #f2f2f2;
-            --color-line: #dcdcdc;
-            --color-code-bg: #f7f7f7;
-            --color-accent: #0f5cbd;
+            --color-bg-primary: #f6f9fc;
+            --color-text-primary: #1c232b;
+            --color-text-secondary: #4d5966;
+            --color-card-bg: rgba(255, 255, 255, 0.84);
+            --color-line: #d4dde7;
+            --color-code-bg: #f2f6fa;
+            --color-accent: #0a5eb8;
+            --color-glow: rgba(10, 94, 184, 0.12);
         }
 
         @media (prefers-color-scheme: dark) {
@@ -26,6 +29,19 @@
                 --color-line: rgba(255, 255, 255, 0.14);
                 --color-code-bg: #1f1f1f;
                 --color-accent: #7bb0ff;
+                --color-glow: rgba(123, 176, 255, 0.2);
+            }
+        }
+
+        @keyframes card-enter {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -34,10 +50,13 @@
             margin: 0;
             padding: 0;
             min-height: 100%;
-            font-family: sans-serif;
+            font-family: "Source Sans 3", "Segoe UI", sans-serif;
             font-size: 16px;
             color: var(--color-text-primary);
-            background: var(--color-bg-primary);
+            background:
+                radial-gradient(circle at 92% 8%, var(--color-glow), transparent 34%),
+                radial-gradient(circle at 14% 4%, var(--color-glow), transparent 28%),
+                var(--color-bg-primary);
         }
 
         body {
@@ -56,8 +75,10 @@
 
         h1 {
             margin: 0;
-            font-size: 2.2em;
-            font-weight: 500;
+            font-size: clamp(2rem, 2.7vw, 2.8rem);
+            font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         .subtitle {
@@ -69,21 +90,56 @@
 
         .card {
             background: var(--color-card-bg);
-            border-radius: 10px;
+            border: 1px solid var(--color-line);
+            backdrop-filter: blur(7px);
+            -webkit-backdrop-filter: blur(7px);
+            border-radius: 14px;
             padding: 1.2em 1.4em;
             margin-bottom: 1.3em;
+            box-shadow: 0 16px 28px -22px rgba(17, 46, 74, 0.55);
+            animation: card-enter 560ms ease both;
+            transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 24px 30px -22px rgba(17, 46, 74, 0.62);
+            border-color: var(--color-accent);
+        }
+
+        section.card:nth-of-type(1) {
+            animation-delay: 80ms;
+        }
+
+        section.card:nth-of-type(2) {
+            animation-delay: 150ms;
+        }
+
+        section.card:nth-of-type(3) {
+            animation-delay: 220ms;
+        }
+
+        section.card:nth-of-type(4) {
+            animation-delay: 290ms;
+        }
+
+        section.card:nth-of-type(5) {
+            animation-delay: 360ms;
         }
 
         h2 {
-            font-size: 1.35em;
+            font-size: 1.42em;
             margin: 0 0 0.55em 0;
-            font-weight: 500;
+            font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.01em;
         }
 
         h3 {
             font-size: 1.06em;
             margin: 0.9em 0 0.5em 0;
-            font-weight: 600;
+            font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+            font-weight: 500;
             color: var(--color-accent);
         }
 
@@ -106,6 +162,7 @@
 
         a {
             color: var(--color-accent);
+            text-underline-offset: 3px;
         }
 
         a:hover {
@@ -129,6 +186,17 @@
         .small {
             color: var(--color-text-secondary);
             font-size: 0.95em;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .card {
+                animation: none;
+                transition: none;
+            }
+
+            .card:hover {
+                transform: none;
+            }
         }
     </style>
 </head>
