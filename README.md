@@ -4,15 +4,15 @@ Reusable static error pages for web servers.
 
 ## Included Pages
 
-- 403.html
-- 404.html
-- 429.html
-- 500.html
-- 502.html
-- 503.html
-- 504.html
-- maintenance.html
-- instructions.html
+- [403.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/403.html)
+- [404.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/404.html)
+- [429.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/429.html)
+- [500.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/500.html)
+- [502.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/502.html)
+- [503.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/503.html)
+- [504.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/504.html)
+- [maintenance.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/maintenance.html)
+- [instructions.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/instructions.html)
 
 ## Quick Start
 
