@@ -6,28 +6,28 @@ Reusable static error pages for web servers.
 
 Each page explains what happened, what visitors can do, and what site owners should check.
 
-- [400.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/400.html) - 400 Bad Request
-- [401.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/401.html) - 401 Unauthorized
-- [403.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/403.html) - 403 Forbidden
-- [404.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/404.html) - 404 Not Found
-- [405.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/405.html) - 405 Method Not Allowed
-- [408.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/408.html) - 408 Request Timeout
-- [410.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/410.html) - 410 Gone
-- [413.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/413.html) - 413 Payload Too Large
-- [414.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/414.html) - 414 URI Too Long
-- [415.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/415.html) - 415 Unsupported Media Type
-- [429.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/429.html) - 429 Too Many Requests
-- [431.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/431.html) - 431 Request Header Fields Too Large
-- [451.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/451.html) - 451 Unavailable For Legal Reasons
-- [500.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/500.html) - 500 Internal Server Error
-- [501.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/501.html) - 501 Not Implemented
-- [502.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/502.html) - 502 Bad Gateway
-- [503.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/503.html) - 503 Service Unavailable
-- [504.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/504.html) - 504 Gateway Timeout
-- [505.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/505.html) - 505 HTTP Version Not Supported
-- [507.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/507.html) - 507 Insufficient Storage
-- [maintenance.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/maintenance.html) - 503 Temporary Maintenance
-- [instructions.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/improve-error-pages/instructions.html)
+- [400.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/400.html) - 400 Bad Request
+- [401.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/401.html) - 401 Unauthorized
+- [403.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/403.html) - 403 Forbidden
+- [404.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/404.html) - 404 Not Found
+- [405.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/405.html) - 405 Method Not Allowed
+- [408.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/408.html) - 408 Request Timeout
+- [410.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/410.html) - 410 Gone
+- [413.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/413.html) - 413 Payload Too Large
+- [414.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/414.html) - 414 URI Too Long
+- [415.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/415.html) - 415 Unsupported Media Type
+- [429.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/429.html) - 429 Too Many Requests
+- [431.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/431.html) - 431 Request Header Fields Too Large
+- [451.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/451.html) - 451 Unavailable For Legal Reasons
+- [500.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/500.html) - 500 Internal Server Error
+- [501.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/501.html) - 501 Not Implemented
+- [502.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/502.html) - 502 Bad Gateway
+- [503.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/503.html) - 503 Service Unavailable
+- [504.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/504.html) - 504 Gateway Timeout
+- [505.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/505.html) - 505 HTTP Version Not Supported
+- [507.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/507.html) - 507 Insufficient Storage
+- [maintenance.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/maintenance.html) - 503 Temporary Maintenance
+- [instructions.html](https://htmlpreview.github.io/?https://github.com/ithubdeveloper/error-pages/blob/main/instructions.html)
 
 ## Install
 
