@@ -6,7 +6,7 @@
     <title>500 Internal Server Error</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="500 Internal Server Error">
-    <meta name="description" content="A 500 error status implies there is a problem with the web server's software causing it to malfunction.">
+    <meta name="description" content="The server hit an unexpected problem.">
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600&display=swap');
 
@@ -216,7 +216,7 @@ code {
     display: block;
     margin: 1em;
     flex-grow: 1;
-    max-width: 40%;
+    max-width: 28%;
 }
 
 .reason h2 {
@@ -250,6 +250,12 @@ footer .details code {
 @media screen and (max-width: 820px) {
     .arrows {
         display: none;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .reason > * {
+        max-width: 100%;
     }
 }
 
@@ -350,11 +356,15 @@ footer .details code {
 <div class="reason">
     <div class="what-happened">
         <h2>What happened?</h2>
-        <p class="description" id="what-happened-text">A 500 error status implies there is a problem with the web server's software causing it to malfunction.</p>
+        <p class="description" id="what-happened-text">Something went wrong on the server while handling your request. The problem is not caused by anything you did.</p>
     </div>
     <div class="what-can-i-do">
         <h2>What can I do?</h2>
-        <p class="description" id="what-can-i-do-text">Nothing you can do at the moment. If you need immediate assistance, please send us an email instead. We apologize for any inconvenience.</p>
+        <p class="description" id="what-can-i-do-text">Wait a few minutes and reload the page. If the problem continues, please contact the site owner and say what you were doing.</p>
+    </div>
+    <div class="for-admins">
+        <h2>Site owner?</h2>
+        <p class="description">Check the web server and application error logs (for example /var/log/nginx/error.log or /var/log/apache2/error.log) for the exact cause. Look for bad configuration, crashed scripts and permission problems.</p>
     </div>
 </div>
 <script>
@@ -495,7 +505,7 @@ footer .details code {
 
         setReasons({
             whatHappened: (document.getElementById('what-happened-text').innerText || '').trim(),
-            whatToDo: whatToDo.trim()
+            whatToDo: (document.getElementById('what-can-i-do-text').innerText || '').trim()
         });
     }
 </script>

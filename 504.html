@@ -6,7 +6,7 @@
     <title>504 Gateway Timeout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="504 Gateway Timeout">
-    <meta name="description" content="A 504 error status implies there is a slow IP communication problem between back-end servers attempting to fulfill this request.">
+    <meta name="description" content="The upstream server took too long to respond.">
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600&display=swap');
 
@@ -216,7 +216,7 @@ code {
     display: block;
     margin: 1em;
     flex-grow: 1;
-    max-width: 40%;
+    max-width: 28%;
 }
 
 .reason h2 {
@@ -250,6 +250,12 @@ footer .details code {
 @media screen and (max-width: 820px) {
     .arrows {
         display: none;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .reason > * {
+        max-width: 100%;
     }
 }
 
@@ -350,11 +356,15 @@ footer .details code {
 <div class="reason">
     <div class="what-happened">
         <h2>What happened?</h2>
-        <p class="description" id="what-happened-text">A 504 error status implies there is a slow IP communication problem between back-end servers attempting to fulfill this request.</p>
+        <p class="description" id="what-happened-text">The server acts as a gateway and did not get an answer from the application server behind it in time.</p>
     </div>
     <div class="what-can-i-do">
         <h2>What can I do?</h2>
-        <p class="description" id="what-can-i-do-text">Clearing your browser cache and refreshing the page may clear this issue. If the problem persists and you need immediate assistance, please send us an email instead.</p>
+        <p class="description" id="what-can-i-do-text">Reload the page after a minute. If you were submitting something, check whether it went through before trying again.</p>
+    </div>
+    <div class="for-admins">
+        <h2>Site owner?</h2>
+        <p class="description">Check for slow queries or hung workers, and tune proxy_read_timeout (nginx) or ProxyTimeout (Apache) only after fixing the cause.</p>
     </div>
 </div>
 <script>
@@ -495,7 +505,7 @@ footer .details code {
 
         setReasons({
             whatHappened: (document.getElementById('what-happened-text').innerText || '').trim(),
-            whatToDo: whatToDo.trim()
+            whatToDo: (document.getElementById('what-can-i-do-text').innerText || '').trim()
         });
     }
 </script>

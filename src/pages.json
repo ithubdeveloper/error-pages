@@ -1,0 +1,191 @@
+[
+  {
+    "code": 400,
+    "title": "400 Bad Request",
+    "desc": "The server could not understand the request.",
+    "happened": "The server could not understand your request because it was malformed. This can be caused by corrupted cookies, an invalid URL or a damaged request sent by the browser.",
+    "todo": "Check the address for typos, clear your cookies for this site and try again. If you were uploading or submitting a form, try again with different data.",
+    "admin": "Check the access log for the offending request. Oversized cookies or headers, invalid characters and broken proxies are the usual causes.",
+    "file": "400.html"
+  },
+  {
+    "code": 401,
+    "title": "401 Unauthorized",
+    "desc": "Authentication is required to access this page.",
+    "happened": "This page requires you to sign in, and either no credentials were sent or the ones sent were not accepted.",
+    "todo": "Sign in with the correct account and try again. If you already did, your session may have expired, so sign in again.",
+    "admin": "Check your authentication configuration (auth_basic / AuthType) and that the credentials file is readable by the web server.",
+    "file": "401.html"
+  },
+  {
+    "code": 403,
+    "title": "403 Forbidden",
+    "desc": "You do not have permission to access this page.",
+    "happened": "The server understood your request but refuses to let you see this page. Directories and files are often kept private on purpose.",
+    "todo": "Check that you are signed in with the right account and that the address is correct. If you believe you should have access, contact the site owner.",
+    "admin": "Check file and directory permissions (the web server user needs read access, and execute on every parent directory), allow/deny rules, and SELinux or AppArmor denials.",
+    "file": "403.html"
+  },
+  {
+    "code": 404,
+    "title": "404 Not Found",
+    "desc": "The page you are looking for could not be found.",
+    "happened": "The server could not find the page you asked for. It may have been moved, renamed or deleted, or the address may contain a typo.",
+    "todo": "Check the address for typos, go back and use the site navigation or search to find the page again. If you followed a link, tell the site owner it is broken.",
+    "admin": "Check the document root, the location / alias and rewrite rules, and file name case (Linux is case-sensitive). Consider a redirect if the page was moved.",
+    "file": "404.html"
+  },
+  {
+    "code": 405,
+    "title": "405 Method Not Allowed",
+    "desc": "The request method is not allowed for this page.",
+    "happened": "The page exists, but it does not accept the kind of request your browser or application made (for example POST on a page that only allows GET).",
+    "todo": "Go back and reload the page. If you are using an API client, check that you are using the correct HTTP method.",
+    "admin": "Check allowed methods (limit_except / Limit, Require method) and that your application routes accept the method.",
+    "file": "405.html"
+  },
+  {
+    "code": 408,
+    "title": "408 Request Timeout",
+    "desc": "The server timed out waiting for the request.",
+    "happened": "The server waited for your browser to finish sending the request, but it took too long. This is usually caused by a slow or unstable connection.",
+    "todo": "Check your internet connection and reload the page. Switching network or disabling VPN may help.",
+    "admin": "Tune client_header_timeout / client_body_timeout (nginx) or RequestReadTimeout (Apache) if legitimate clients are being cut off.",
+    "file": "408.html"
+  },
+  {
+    "code": 410,
+    "title": "410 Gone",
+    "desc": "This page has been permanently removed.",
+    "happened": "This page used to exist but was deliberately and permanently removed, and there is no new address for it.",
+    "todo": "Remove any bookmark for this page and visit the home page to find similar content.",
+    "admin": "Return 410 only for content that is gone for good. Use a 301 redirect if the content moved.",
+    "file": "410.html"
+  },
+  {
+    "code": 413,
+    "title": "413 Payload Too Large",
+    "desc": "The request is larger than the server allows.",
+    "happened": "The data you tried to send, such as a file upload, is bigger than the server is configured to accept.",
+    "todo": "Reduce the size of the file or data and try again, for example by compressing it.",
+    "admin": "Raise client_max_body_size (nginx) or LimitRequestBody (Apache), plus upload limits in PHP or your application.",
+    "file": "413.html"
+  },
+  {
+    "code": 414,
+    "title": "414 URI Too Long",
+    "desc": "The address of the request is too long.",
+    "happened": "The address (URL) sent to the server is longer than it is willing to process. This can happen with very long query strings or a redirect loop.",
+    "todo": "Shorten the address, remove unnecessary parameters and try again.",
+    "admin": "Check for redirect loops that keep appending to the URL, or raise large_client_header_buffers (nginx) / LimitRequestLine (Apache).",
+    "file": "414.html"
+  },
+  {
+    "code": 415,
+    "title": "415 Unsupported Media Type",
+    "desc": "The server does not support the type of data sent.",
+    "happened": "The server refused the request because the format of the data you sent is not one it understands.",
+    "todo": "Try a different file format (for example JPG or PDF) and send it again.",
+    "admin": "Check the Content-Type your clients send and the types your application accepts.",
+    "file": "415.html"
+  },
+  {
+    "code": 429,
+    "title": "429 Too Many Requests",
+    "desc": "You have exceeded the request rate limit.",
+    "happened": "You, or your network, sent too many requests in a short time, so the server is temporarily limiting access to protect itself.",
+    "todo": "Wait a few minutes, then try again at a slower pace. Close extra tabs or tools that may be sending automated requests.",
+    "admin": "Review limit_req (nginx) or mod_evasive / mod_ratelimit (Apache) thresholds. Make sure a shared proxy IP is not blocking many users at once.",
+    "file": "429.html"
+  },
+  {
+    "code": 431,
+    "title": "431 Request Header Fields Too Large",
+    "desc": "The request headers are too large.",
+    "happened": "The headers sent with your request, often because of large cookies, are bigger than the server accepts.",
+    "todo": "Clear your cookies for this site and reload the page.",
+    "admin": "Raise large_client_header_buffers (nginx) or LimitRequestFieldSize (Apache), and investigate why cookies grew so big.",
+    "file": "431.html"
+  },
+  {
+    "code": 451,
+    "title": "451 Unavailable For Legal Reasons",
+    "desc": "This content is unavailable for legal reasons.",
+    "happened": "Access to this page is blocked because of a legal demand or a legal restriction that applies to your location.",
+    "todo": "There is nothing you can do from your side. Contact the site owner if you want details.",
+    "admin": "Document the legal reason and respond with a Link header to the blocking authority where possible.",
+    "file": "451.html"
+  },
+  {
+    "code": 500,
+    "title": "500 Internal Server Error",
+    "desc": "The server hit an unexpected problem.",
+    "happened": "Something went wrong on the server while handling your request. The problem is not caused by anything you did.",
+    "todo": "Wait a few minutes and reload the page. If the problem continues, please contact the site owner and say what you were doing.",
+    "admin": "Check the web server and application error logs (for example /var/log/nginx/error.log or /var/log/apache2/error.log) for the exact cause. Look for bad configuration, crashed scripts and permission problems.",
+    "file": "500.html"
+  },
+  {
+    "code": 501,
+    "title": "501 Not Implemented",
+    "desc": "The server does not support this feature.",
+    "happened": "The server does not know how to handle the type of request that was made.",
+    "todo": "Go back and try a different action. If you keep seeing this, contact the site owner.",
+    "admin": "Check that the HTTP method or feature is implemented by your application or proxy.",
+    "file": "501.html"
+  },
+  {
+    "code": 502,
+    "title": "502 Bad Gateway",
+    "desc": "The server received an invalid response from an upstream server.",
+    "happened": "The server acts as a gateway and got a broken or empty answer from the application server behind it, which may be restarting or down.",
+    "todo": "Wait a minute and reload the page. Clearing your browser cache may help. If it persists, contact the site owner.",
+    "admin": "Check that the upstream (PHP-FPM, Node, Gunicorn, etc.) is running, the socket or port in proxy_pass / ProxyPass is correct, and review upstream logs.",
+    "file": "502.html"
+  },
+  {
+    "code": 503,
+    "title": "503 Service Unavailable",
+    "desc": "The service is temporarily unavailable.",
+    "happened": "The server is temporarily unable to handle requests because it is overloaded or down for maintenance. This is normally brief.",
+    "todo": "Wait a few minutes and try again. You do not need to do anything else.",
+    "admin": "Check server load, worker limits and whether a maintenance flag is active. Send a Retry-After header so clients know when to return.",
+    "file": "503.html"
+  },
+  {
+    "code": 504,
+    "title": "504 Gateway Timeout",
+    "desc": "The upstream server took too long to respond.",
+    "happened": "The server acts as a gateway and did not get an answer from the application server behind it in time.",
+    "todo": "Reload the page after a minute. If you were submitting something, check whether it went through before trying again.",
+    "admin": "Check for slow queries or hung workers, and tune proxy_read_timeout (nginx) or ProxyTimeout (Apache) only after fixing the cause.",
+    "file": "504.html"
+  },
+  {
+    "code": 505,
+    "title": "505 HTTP Version Not Supported",
+    "desc": "The HTTP version used is not supported.",
+    "happened": "The server does not support the version of the HTTP protocol used by your browser or tool.",
+    "todo": "Update your browser or client and try again.",
+    "admin": "Check protocol settings (http2, Protocols directive) and any proxy in front of the server.",
+    "file": "505.html"
+  },
+  {
+    "code": 507,
+    "title": "507 Insufficient Storage",
+    "desc": "The server has run out of storage space.",
+    "happened": "The server could not complete your request because it ran out of disk space.",
+    "todo": "Try again later. This problem is on the server side and cannot be fixed by you.",
+    "admin": "Check disk usage and inodes with df -h and df -i, and rotate or clean logs and temporary files.",
+    "file": "507.html"
+  },
+  {
+    "code": 503,
+    "title": "503 Temporary Maintenance",
+    "desc": "The site is down for scheduled maintenance.",
+    "happened": "This site is undergoing scheduled maintenance. Like any service, it needs regular care to keep running smoothly and securely.",
+    "todo": "Nothing is needed from you. Please come back in a little while, the site will return as soon as the work is done.",
+    "admin": "Serve this page with a 503 status and a Retry-After header so search engines do not index it. See the README for a maintenance flag example.",
+    "file": "maintenance.html"
+  }
+]

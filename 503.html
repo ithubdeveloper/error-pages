@@ -6,7 +6,7 @@
     <title>503 Service Unavailable</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="503 Service Unavailable">
-    <meta name="description" content="A 503 error status implies that this is a temporary condition due to a temporary overloading or maintenance of the server. This error is normally a brief temporary interruption.">
+    <meta name="description" content="The service is temporarily unavailable.">
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600&display=swap');
 
@@ -216,7 +216,7 @@ code {
     display: block;
     margin: 1em;
     flex-grow: 1;
-    max-width: 40%;
+    max-width: 28%;
 }
 
 .reason h2 {
@@ -250,6 +250,12 @@ footer .details code {
 @media screen and (max-width: 820px) {
     .arrows {
         display: none;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .reason > * {
+        max-width: 100%;
     }
 }
 
@@ -350,11 +356,15 @@ footer .details code {
 <div class="reason">
     <div class="what-happened">
         <h2>What happened?</h2>
-        <p class="description" id="what-happened-text">A 503 error status implies that this is a temporary condition due to a temporary overloading or maintenance of the server. This error is normally a brief temporary interruption.</p>
+        <p class="description" id="what-happened-text">The server is temporarily unable to handle requests because it is overloaded or down for maintenance. This is normally brief.</p>
     </div>
     <div class="what-can-i-do">
         <h2>What can I do?</h2>
-        <p class="description" id="what-can-i-do-text">Nothing you can do at the moment. If you need immediate assistance, please send us an email instead. We apologize for any inconvenience.</p>
+        <p class="description" id="what-can-i-do-text">Wait a few minutes and try again. You do not need to do anything else.</p>
+    </div>
+    <div class="for-admins">
+        <h2>Site owner?</h2>
+        <p class="description">Check server load, worker limits and whether a maintenance flag is active. Send a Retry-After header so clients know when to return.</p>
     </div>
 </div>
 <script>
@@ -495,7 +505,7 @@ footer .details code {
 
         setReasons({
             whatHappened: (document.getElementById('what-happened-text').innerText || '').trim(),
-            whatToDo: whatToDo.trim()
+            whatToDo: (document.getElementById('what-can-i-do-text').innerText || '').trim()
         });
     }
 </script>

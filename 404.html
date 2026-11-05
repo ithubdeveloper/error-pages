@@ -6,7 +6,7 @@
     <title>404 Not Found</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="404 Not Found">
-    <meta name="description" content="A 404 error status implies that the file or page that you're looking for could not be found.">
+    <meta name="description" content="The page you are looking for could not be found.">
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600&display=swap');
 
@@ -216,7 +216,7 @@ code {
     display: block;
     margin: 1em;
     flex-grow: 1;
-    max-width: 40%;
+    max-width: 28%;
 }
 
 .reason h2 {
@@ -250,6 +250,12 @@ footer .details code {
 @media screen and (max-width: 820px) {
     .arrows {
         display: none;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .reason > * {
+        max-width: 100%;
     }
 }
 
@@ -350,11 +356,15 @@ footer .details code {
 <div class="reason">
     <div class="what-happened">
         <h2>What happened?</h2>
-        <p class="description" id="what-happened-text">A 404 error status implies that the file or page that you're looking for could not be found.</p>
+        <p class="description" id="what-happened-text">The server could not find the page you asked for. It may have been moved, renamed or deleted, or the address may contain a typo.</p>
     </div>
     <div class="what-can-i-do">
         <h2>What can I do?</h2>
-        <p class="description" id="what-can-i-do-text">Please use your browser's back button and check that you're in the right place. If you need immediate assistance, please send us an email instead.</p>
+        <p class="description" id="what-can-i-do-text">Check the address for typos, go back and use the site navigation or search to find the page again. If you followed a link, tell the site owner it is broken.</p>
+    </div>
+    <div class="for-admins">
+        <h2>Site owner?</h2>
+        <p class="description">Check the document root, the location / alias and rewrite rules, and file name case (Linux is case-sensitive). Consider a redirect if the page was moved.</p>
     </div>
 </div>
 <script>
@@ -495,7 +505,7 @@ footer .details code {
 
         setReasons({
             whatHappened: (document.getElementById('what-happened-text').innerText || '').trim(),
-            whatToDo: whatToDo.trim()
+            whatToDo: (document.getElementById('what-can-i-do-text').innerText || '').trim()
         });
     }
 </script>
