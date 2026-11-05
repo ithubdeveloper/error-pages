@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="robots" content="nofollow,noarchive,noindex">
-    <title>Rate Limit Exceeded</title>
+    <title>429 Too Many Requests</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="Rate Limit Exceeded">
-    <meta name="description" content="A 429 status error means you have exceeded the request rate limit for the the web server you are accessing.">
+    <meta name="title" content="429 Too Many Requests">
+    <meta name="description" content="You have exceeded the request rate limit.">
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600&display=swap');
 
@@ -216,7 +216,7 @@ code {
     display: block;
     margin: 1em;
     flex-grow: 1;
-    max-width: 40%;
+    max-width: 28%;
 }
 
 .reason h2 {
@@ -253,6 +253,12 @@ footer .details code {
     }
 }
 
+@media screen and (max-width: 1000px) {
+    .reason > * {
+        max-width: 100%;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .reason > * {
         max-width: 100%;
@@ -286,7 +292,7 @@ footer .details code {
 <body>
 <header>
     <h1 class="error-code" id="error-code">429</h1>
-    <p class="error-description" id="error-description">Rate Limit Exceeded</p>
+    <p class="error-description" id="error-description">429 Too Many Requests</p>
 </header>
 <div class="status">
     <div class="card warning" id="client-status-card">
@@ -350,11 +356,15 @@ footer .details code {
 <div class="reason">
     <div class="what-happened">
         <h2>What happened?</h2>
-        <p class="description" id="what-happened-text">A 429 status error means you have exceeded the request rate limit for the the web server you are accessing.</p>
+        <p class="description" id="what-happened-text">You, or your network, sent too many requests in a short time, so the server is temporarily limiting access to protect itself.</p>
     </div>
     <div class="what-can-i-do">
         <h2>What can I do?</h2>
-        <p class="description" id="what-can-i-do-text">The best thing to do is to slow down with your requests and try again in a few minutes. We apologize for any inconvenience.</p>
+        <p class="description" id="what-can-i-do-text">Wait a few minutes, then try again at a slower pace. Close extra tabs or tools that may be sending automated requests.</p>
+    </div>
+    <div class="for-admins">
+        <h2>Site owner?</h2>
+        <p class="description">Review limit_req (nginx) or mod_evasive / mod_ratelimit (Apache) thresholds. Make sure a shared proxy IP is not blocking many users at once.</p>
     </div>
 </div>
 <script>
@@ -495,7 +505,7 @@ footer .details code {
 
         setReasons({
             whatHappened: (document.getElementById('what-happened-text').innerText || '').trim(),
-            whatToDo: whatToDo.trim()
+            whatToDo: (document.getElementById('what-can-i-do-text').innerText || '').trim()
         });
     }
 </script>

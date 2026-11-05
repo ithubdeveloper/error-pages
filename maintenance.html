@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="robots" content="nofollow,noarchive,noindex">
-    <title>Temporary Maintenance</title>
+    <title>503 Temporary Maintenance</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="Temporary Maintenance">
-    <meta name="description" content="Servers and websites need regular maintenance just like a car to keep them up and running smoothly.">
+    <meta name="title" content="503 Temporary Maintenance">
+    <meta name="description" content="The site is down for scheduled maintenance.">
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600&display=swap');
 
@@ -216,7 +216,7 @@ code {
     display: block;
     margin: 1em;
     flex-grow: 1;
-    max-width: 40%;
+    max-width: 28%;
 }
 
 .reason h2 {
@@ -253,6 +253,12 @@ footer .details code {
     }
 }
 
+@media screen and (max-width: 1000px) {
+    .reason > * {
+        max-width: 100%;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .reason > * {
         max-width: 100%;
@@ -286,7 +292,7 @@ footer .details code {
 <body>
 <header>
     <h1 class="error-code" id="error-code">503</h1>
-    <p class="error-description" id="error-description">Temporary Maintenance</p>
+    <p class="error-description" id="error-description">503 Temporary Maintenance</p>
 </header>
 <div class="status">
     <div class="card warning" id="client-status-card">
@@ -350,11 +356,15 @@ footer .details code {
 <div class="reason">
     <div class="what-happened">
         <h2>What happened?</h2>
-        <p class="description" id="what-happened-text">Servers and websites need regular maintenance just like a car to keep them up and running smoothly.</p>
+        <p class="description" id="what-happened-text">This site is undergoing scheduled maintenance. Like any service, it needs regular care to keep running smoothly and securely.</p>
     </div>
     <div class="what-can-i-do">
         <h2>What can I do?</h2>
-        <p class="description" id="what-can-i-do-text">If you need immediate assistance, please send us an email instead. We apologize for any inconvenience.</p>
+        <p class="description" id="what-can-i-do-text">Nothing is needed from you. Please come back in a little while, the site will return as soon as the work is done.</p>
+    </div>
+    <div class="for-admins">
+        <h2>Site owner?</h2>
+        <p class="description">Serve this page with a 503 status and a Retry-After header so search engines do not index it. See the README for a maintenance flag example.</p>
     </div>
 </div>
 <script>
@@ -495,7 +505,7 @@ footer .details code {
 
         setReasons({
             whatHappened: (document.getElementById('what-happened-text').innerText || '').trim(),
-            whatToDo: whatToDo.trim()
+            whatToDo: (document.getElementById('what-can-i-do-text').innerText || '').trim()
         });
     }
 </script>
